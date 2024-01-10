@@ -29,8 +29,8 @@ function timeoutSolution (counter = 0) {
   }
 }
 
-console.time('timeout');
-timeoutSolution();
+// console.time('timeout');
+// timeoutSolution();
 
 // console.group('name');
 // console.log(213);
