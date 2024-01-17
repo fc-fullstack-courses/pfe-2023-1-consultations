@@ -1,5 +1,6 @@
 import './App.css';
 import UserCard from './components/UserCard';
+import VideoList from './components/VideoList';
 
 const user1 = {
   id: 1,
@@ -20,6 +21,7 @@ function App() {
     <div>
       <UserCard user={user1}/>
       <UserCard user={user2}/>
+      <VideoList />
     </div>
   );
 }
