@@ -1,5 +1,6 @@
 import styles from './App.module.css';
 import FlexContainer from './components/FlexContainer';
+import Drill from './components/Tree';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <p>987</p>
       </FlexContainer>
       <FlexContainer children={<p>sadsadsa</p>} />
+      <Drill data="secret data" data2={1232132131} data3={[12321,343434,3454353]} isImportant/>
     </div>
   );
 }
