@@ -1,15 +1,58 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { UserContext } from './contexts';
 import ContextConsumer from './components/ContextConsumer';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import FormExample from './components/FormExample';
 
+function useAlertOnClick (startingText) {
+  const [text, setText] = useState(startingText);
+
+  useEffect(() => {
+
+    function alertText () {
+      alert(text);
+    }
+
+    document.addEventListener('click', alertText);
+    return () => {
+      document.removeEventListener('click', alertText);
+    }
+  },[text]);
+
+  return setText;
+}
+
 function App() {
   const [user, setUser] = useState({
     id: 123214234,
     name: 'Test User Name',
   });
+
+  const [clicks, setClicks] = useState(0);
+  const setText1 = useAlertOnClick('test text');
+
+  function handleClick () {
+    alert(clicks + 1);
+    setClicks((clicks) => clicks + 1);
+  }
+
+  useEffect(function effectCallback (){
+    // DidMount + DidUpdate
+    console.log('effectCallback');
+    const id = 5;
+
+    document.body.addEventListener('click', handleClick);
+
+    return function effectClear () {
+      // WillUnmount + перед кожним DidUpdate
+      console.log('effectClear');
+
+      document.body.removeEventListener('click', handleClick);
+    }
+  }, [clicks, user]);
+
+  // function handleClick () {}
 
   return (
     // <BrowserRouter>
@@ -24,6 +67,10 @@ function App() {
           <li><Link to='/nothome'>Not Home</Link></li>
         </ul>
       </header>
+      <button onClick={() => {
+        const newText = prompt();
+        setText1(newText);
+      }}>Change text</button>
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/nothome' component={NotHomePage} />
