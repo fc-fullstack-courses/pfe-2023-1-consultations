@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../contexts';
+import styles from './ContextConsumer.module.sass';
 
 const ContextConsumer = (props) => {
   const user = useContext(UserContext);
@@ -7,7 +8,7 @@ const ContextConsumer = (props) => {
     // <UserContext.Consumer>
     //   {function renderUser(user) {
     //     return (
-    <div>
+    <div className={styles.container}>
       <pre>{JSON.stringify(user)}</pre>
     </div>
   );
