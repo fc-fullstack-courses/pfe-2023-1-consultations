@@ -16,4 +16,7 @@ const ContextConsumer = (props) => {
   // );
 };
 
+// const NewComponent = withData(ContextConsumer);
+// export default NewComponent;
+
 export default ContextConsumer;
