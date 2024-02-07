@@ -4,6 +4,7 @@ import { UserContext } from './contexts';
 import ContextConsumer from './components/ContextConsumer';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import FormExample from './components/FormExample';
+import Clicker from './components/Clicker';
 
 function useAlertOnClick (startingText) {
   const [text, setText] = useState(startingText);
@@ -30,34 +31,35 @@ function App() {
   });
 
   const [clicks, setClicks] = useState(0);
-  const setText1 = useAlertOnClick('test text');
+  // const setText1 = useAlertOnClick('test text');
 
-  function handleClick () {
-    alert(clicks + 1);
-    setClicks((clicks) => clicks + 1);
-  }
+  // function handleClick () {
+  //   alert(clicks + 1);
+  //   setClicks((clicks) => clicks + 1);
+  // }
 
-  useEffect(function effectCallback (){
-    // DidMount + DidUpdate
-    console.log('effectCallback');
-    const id = 5;
+  // useEffect(function effectCallback (){
+  //   // DidMount + DidUpdate
+  //   console.log('effectCallback');
+  //   const id = 5;
 
-    document.body.addEventListener('click', handleClick);
+  //   document.body.addEventListener('click', handleClick);
 
-    return function effectClear () {
-      // WillUnmount + перед кожним DidUpdate
-      console.log('effectClear');
+  //   return function effectClear () {
+  //     // WillUnmount + перед кожним DidUpdate
+  //     console.log('effectClear');
 
-      document.body.removeEventListener('click', handleClick);
-    }
-  }, [clicks, user]);
+  //     document.body.removeEventListener('click', handleClick);
+  //   }
+  // }, [clicks, user]);
 
   // function handleClick () {}
 
   return (
     // <BrowserRouter>
     <>
-      <UserContext.Provider value={user}>
+    <Clicker />
+      {/* <UserContext.Provider value={user}>
         <ContextConsumer />
       </UserContext.Provider>
       <FormExample />
@@ -75,7 +77,7 @@ function App() {
         <Route exact path='/' component={HomePage} />
         <Route path='/nothome' component={NotHomePage} />
         <Route path='/profile/:userId' component={NotHomePage} />
-      </Switch>
+      </Switch> */}
     </>
     //  </BrowserRouter> 
 
