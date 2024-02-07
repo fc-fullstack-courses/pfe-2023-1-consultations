@@ -3,6 +3,7 @@ import './App.css';
 import { UserContext } from './contexts';
 import ContextConsumer from './components/ContextConsumer';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import FormExample from './components/FormExample';
 
 function App() {
   const [user, setUser] = useState({
@@ -16,6 +17,7 @@ function App() {
       <UserContext.Provider value={user}>
         <ContextConsumer />
       </UserContext.Provider>
+      <FormExample />
       <header>
         <ul>
           <li><Link to='/'>Home</Link></li>
@@ -29,6 +31,11 @@ function App() {
       </Switch>
     </>
     //  </BrowserRouter> 
+
+    // <Field name='test' type='checkbox' />
+    // <Field name='test2' type='radio' value={1} />
+    // <Field name='test2' type='radio' value={2} />
+    // <Field name='test2' type='radio' value={3} />
   );
 }
 
