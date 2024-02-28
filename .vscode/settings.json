@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "consultations",
+      "database": "pfe_2023_1_consultations",
+      "username": "postgres",
+      "password": "postgres"
+    }
+  ]
+}
