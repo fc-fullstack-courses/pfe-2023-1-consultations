@@ -1,4 +1,9 @@
 const express = require('express');
+const { middleware1, middleware2 } = require('./middlewares');
+const {
+  sequelizeErrorMiddleware,
+  errorMiddleware,
+} = require('./middlewares/errors');
 
 const app = express();
 
@@ -20,42 +25,13 @@ app.get('/phones/:id', async (request, response, next) => {
   response.send({ data: phones });
 });
 
-const middleware1 = async (req, res, next) => {
-  // міддлвер 1
-  const result = Math.random() > 0.5;
-  console.log(result);
-
-  req.data = Math.random();
-
-  if (result) {
-    next();
-  } else {
-    res.send('middleware validation failure');
-    // ERROR
-    // res.send('middleware validation failure');
-  }
-};
-
 // міддлвери - проміжні обробники на певному запиті
-app.get(
-  '/cars',
-  middleware1,
-  async (request, response, next) => {
-    const result = Math.random() > 0.5;
+app.get('/cars', middleware1, middleware2, async (request, response, next) => {
+  // складний код
+  const cars = [{ id: 12320 }, { id: 112322 }];
 
-    if (!result) {
-      next();
-    } else {
-      next(new Error('bad stuff'));
-    }
-  },
-  async (request, response, next) => {
-    // складний код
-    const cars = [{ id: 12320 }, { id: 112322 }];
-
-    response.send({ data: cars, number: request.data });
-  }
-);
+  response.send({ data: cars, number: request.data });
+});
 
 // Content-type: application / json
 app.post('/phones', express.json(), async (req, res, next) => {
@@ -64,19 +40,6 @@ app.post('/phones', express.json(), async (req, res, next) => {
 
   res.send({ data: newPhone });
 });
-
-// міддлвери для помилок
-const sequelizeErrorMiddleware = async (err, req, res, next) => {
-  if(err.message = 'sequelize') {
-    res.send({ text: 'bad stuff with sequelize', });
-  } else {
-    next(err);
-  }
-};
-
-const errorMiddleware = async (err, req, res, next) => {
-  res.send({ text: err.message, });
-};
 
 // міддлвер на всі маршрути на сервері
 app.use(sequelizeErrorMiddleware, errorMiddleware);
