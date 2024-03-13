@@ -12,6 +12,8 @@ const app = express();
 // роутер - спеціальний міддлвер який допомає здійснювати маршрутизацію
 
 const rootRouter = express.Router();
+const phonesRouter = express.Router();
+const carsRouter = express.Router();
 
 // router.get();
 // router.delete();
@@ -19,16 +21,19 @@ const rootRouter = express.Router();
 
 // маршрут
 // GET http://localhost:5000/phones
-rootRouter.get('/phones', getPhones);
+phonesRouter.get('/', getPhones);
 
 // GET http://localhost:5000/phones/5
-rootRouter.get('/phones/:id', getPhone);
-
-// міддлвери - проміжні обробники на певному запиті
-rootRouter.get('/cars', middleware1, middleware2, getCars);
+phonesRouter.get('/:id', getPhone);
 
 // Content-type: application / json
-rootRouter.post('/phones', express.json(), createPhone);
+phonesRouter.post('/', express.json(), createPhone);
+
+// міддлвери - проміжні обробники на певному запиті
+carsRouter.get('/', middleware1, middleware2, getCars);
+
+rootRouter.use('/phones', phonesRouter );
+rootRouter.use('/cars', carsRouter);
 
 app.use(rootRouter);
 
