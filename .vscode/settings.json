@@ -6,7 +6,7 @@
       "port": 5432,
       "driver": "PostgreSQL",
       "name": "consultations",
-      "database": "pfe_2023_1_consultations",
+      "database": "pfe_2023_1_consultations_sequelize",
       "username": "postgres",
       "password": "postgres"
     }
