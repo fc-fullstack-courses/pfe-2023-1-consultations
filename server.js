@@ -37,12 +37,25 @@ const middleware1 = async (req, res, next) => {
 };
 
 // міддлвери - проміжні обробники на певному запиті
-app.get('/cars', middleware1, async (request, response, next) => {
-  // складний код
-  const cars = [{ id: 12320 }, { id: 112322 }];
+app.get(
+  '/cars',
+  middleware1,
+  async (request, response, next) => {
+    const result = Math.random() > 0.5;
 
-  response.send({ data: cars, number: request.data });
-});
+    if (!result) {
+      next();
+    } else {
+      next(new Error('bad stuff'));
+    }
+  },
+  async (request, response, next) => {
+    // складний код
+    const cars = [{ id: 12320 }, { id: 112322 }];
+
+    response.send({ data: cars, number: request.data });
+  }
+);
 
 // Content-type: application / json
 app.post('/phones', express.json(), async (req, res, next) => {
@@ -51,6 +64,25 @@ app.post('/phones', express.json(), async (req, res, next) => {
 
   res.send({ data: newPhone });
 });
+
+// міддлвери для помилок
+const sequelizeErrorMiddleware = async (err, req, res, next) => {
+  if(err.message = 'sequelize') {
+    res.send({ text: 'bad stuff with sequelize', });
+  } else {
+    next(err);
+  }
+};
+
+const errorMiddleware = async (err, req, res, next) => {
+  res.send({ text: err.message, });
+};
+
+// міддлвер на всі маршрути на сервері
+app.use(sequelizeErrorMiddleware, errorMiddleware);
+// міддлвер на всі маршрути на сервері які починаються на test
+// http://localhost:5000/test/ ....
+// app.use('/test',errorMiddleware);
 
 const PORT = 5000;
 
