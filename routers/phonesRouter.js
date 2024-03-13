@@ -11,3 +11,5 @@ phonesRouter.get('/:id', getPhone);
 
 // Content-type: application / json
 phonesRouter.post('/', express.json(), createPhone);
+
+module.exports = phonesRouter;

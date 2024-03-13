@@ -5,6 +5,7 @@ const {
   errorMiddleware,
 } = require('./middlewares/errors');
 const { getCars } = require('./controllers/cars');
+const rootRouter = require('./routers');
 
 const app = express();
 

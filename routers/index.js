@@ -1,4 +1,5 @@
 const express = require('express');
+const phonesRouter = require('./phonesRouter');
 const rootRouter = express.Router();
 
 // роутер - спеціальний міддлвер який допомає здійснювати маршрутизацію
@@ -8,6 +9,6 @@ const rootRouter = express.Router();
 // router.post();
 
 rootRouter.use('/phones', phonesRouter );
-rootRouter.use('/cars', carsRouter);
+// rootRouter.use('/cars', carsRouter);
 
 module.exports = rootRouter;
