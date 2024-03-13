@@ -9,18 +9,28 @@ const { getCars } = require('./controllers/cars');
 
 const app = express();
 
+// роутер - спеціальний міддлвер який допомає здійснювати маршрутизацію
+
+const rootRouter = express.Router();
+
+// router.get();
+// router.delete();
+// router.post();
+
 // маршрут
 // GET http://localhost:5000/phones
-app.get('/phones', getPhones);
+rootRouter.get('/phones', getPhones);
 
 // GET http://localhost:5000/phones/5
-app.get('/phones/:id', getPhone);
+rootRouter.get('/phones/:id', getPhone);
 
 // міддлвери - проміжні обробники на певному запиті
-app.get('/cars', middleware1, middleware2, getCars);
+rootRouter.get('/cars', middleware1, middleware2, getCars);
 
 // Content-type: application / json
-app.post('/phones', express.json(), createPhone);
+rootRouter.post('/phones', express.json(), createPhone);
+
+app.use(rootRouter);
 
 // міддлвер на всі маршрути на сервері
 app.use(sequelizeErrorMiddleware, errorMiddleware);
