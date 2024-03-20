@@ -18,6 +18,7 @@ module.exports = {
           },
           key: 'id'
         },
+        // defaultValue: 1,
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },

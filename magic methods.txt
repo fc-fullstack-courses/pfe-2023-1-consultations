@@ -1,0 +1,27 @@
+1 : 1 
+User.hasOne(UserData);
+user.getUserData(); // отримати пов'язаний з юзером запис з таблиці users_data
+user.setUserData(userData); // змінити пов'язаний з юзером запис з таблиці users_data
+user.createUserData(data); // створити пов'язаний з юзером запис з таблиці users_data
+1 : 1 , 1 : n
+UserData.belongsTo(User);
+userData.getUser(); // отримати пов'язаний з даними про юзера запис з таблиці users
+userData.setUser(userInstance); // змінити пов'язаний з даними про юзера запис з таблиці users
+userData.createUser(newUserData); // створити пов'язаний з даними про юзера запис з таблиці users
+1 : n
+User.hasMany(Picture);
+user.getPictures(); // отримати всі картинки юзера
+user.countPictures() // рахує кількість картинок юзера
+user.hasPicture(picture) // каже чи пов'язана картинка з користувачем
+user.hasPictures(pictures) // теж але масив картинок
+user.setPictures(pictures) // встановлює передані картинки як єдині картики користувача
+user.addPicture(picture) // пов'язує 1 картинку з користувачем не змінюючи інші
+user.addPictures(pictures) // пов'язує картинки з користувачем не змінюючи інші
+user.removePicture(picture) // видаляє одну картинку у користувача
+user.removePictures(pictures) // видаляє вказані картинки у користувача
+user.createPicture(pictureData) // створює нову картинку
+n : m
+User.BelongsToMany(Group);
+Теж що і у hasMany але у 2 боки
+user.addGroups(groups);
+group.addUsers(users);

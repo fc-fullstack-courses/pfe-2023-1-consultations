@@ -1,0 +1,7 @@
+POST http://localhost:5000/users/2/phones
+Content-Type: application/json
+
+{
+  "name": "Phone 1",
+  "price": 5000
+}

@@ -13,7 +13,7 @@ const carsRouter = express.Router();
 
 // міддлвери - проміжні обробники на певному запиті
 carsRouter.get('/', middleware1, middleware2, getCars);
-
+app.use(express.json());
 app.use(rootRouter);
 
 // міддлвер на всі маршрути на сервері

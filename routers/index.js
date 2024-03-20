@@ -1,4 +1,6 @@
 const express = require('express');
+const { createUser } = require('../controllers/user');
+const { createPhone, getPhones } = require('../controllers/phones');
 const phonesRouter = require('./phonesRouter');
 const rootRouter = express.Router();
 
@@ -8,7 +10,10 @@ const rootRouter = express.Router();
 // router.delete();
 // router.post();
 
-rootRouter.use('/phones', phonesRouter );
+rootRouter.post('/users', createUser);
+rootRouter.post('/users/:userId/phones', createPhone);
+
+// rootRouter.use('/phones', phonesRouter );
 // rootRouter.use('/cars', carsRouter);
 
 module.exports = rootRouter;
