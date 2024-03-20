@@ -1,0 +1,7 @@
+POST http://localhost:5000/groups
+Content-Type: application/json
+
+{
+  "name": "Group 2",
+  "userId": 2
+}
