@@ -1,7 +1,7 @@
 const express = require('express');
 const { createUser } = require('../controllers/user');
 const { createPhone, getPhones } = require('../controllers/phones');
-const { createGroup, AddUserToGroup } = require('../controllers/groups');
+const { createGroup, AddUserToGroup, getGroupWithUsers, getGroupWithUsersAlt } = require('../controllers/groups');
 const phonesRouter = require('./phonesRouter');
 const rootRouter = express.Router();
 
@@ -15,6 +15,9 @@ rootRouter.post('/users', createUser);
 
 rootRouter.post('/groups', createGroup);
 rootRouter.post('/groups/:groupId/users/:userId', AddUserToGroup);
+
+rootRouter.get('/groups/:groupId', getGroupWithUsers);
+rootRouter.get('/groups/:groupId/v2', getGroupWithUsersAlt);
 
 rootRouter.post('/users/:userId/phones', createPhone);
 
